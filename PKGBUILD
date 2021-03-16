@@ -2,7 +2,7 @@
 
 pkgname=burpsuite-pro
 pkgver=2021.3.1
-pkgrel=1
+pkgrel=2
 pkgdesc="An integrated platform for performing security testing of web applications (professional edition)"
 url="https://portswigger.net/burp/"
 depends=('java-runtime>=9')
@@ -20,6 +20,12 @@ sha256sums=(
   'f9b8bedbab02c8f0e03b2f5e3f99fa003c58d767168c3c4aa135233b3b533d4b' # icon128.png
   '3aaa84dd4c3d31a88cd065b8445d164737c7fad4fb56833fb994de0bf6dbe3be' # splash.png
 )
+
+prepare() {
+  cd ${srcdir}
+  # remove useless chromium versions
+  zip -d ${pkgname}-${pkgver}.jar 'chromium-macosx*.zip' 'chromium-win*.zip'
+}
 
 package() {
   mkdir -p ${pkgdir}/usr/bin
