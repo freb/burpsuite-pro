@@ -39,9 +39,6 @@ package() {
 
   # Create startup file for burpsuite-pro.
   echo "#!/bin/sh
-if [ -f "$HOME/.config/${pkgname}/config" ]; then
-  source $HOME/.config/${pkgname}/config
-fi
 exec \$JAVA_HOME/bin/java -jar /usr/share/${pkgname}/${pkgname}.jar -splash:/usr/share/pixmaps/burpsuite-pro-splash.png --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/javax.crypto=ALL-UNNAMED --add-opens java.desktop/javax.swing=ALL-UNNAMED \"\$@\"" > ${pkgdir}/usr/bin/${pkgname}
   chmod 755 ${pkgdir}/usr/bin/${pkgname}
 }
